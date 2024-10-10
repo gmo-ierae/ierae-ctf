@@ -1,0 +1,12 @@
+services:
+  chall:
+    build: .
+    restart: unless-stopped
+    platform: linux/amd64
+    ports:
+      - 51914:51914
+    deploy:
+      resources:
+        reservations:
+          cpus: '0.5'
+          memory: 100M

@@ -1,0 +1,10 @@
+# In the actual deployment, we use container-spawner
+version: '3'
+services:
+  backdoored_cgi:
+    build:
+      context: .
+    ulimits:
+      core: 0
+    ports:
+      - "19810:80"

@@ -1,0 +1,17 @@
+name: "PNGParser (flag 1)"
+description: >
+  <p>This challenge is a homework problem from IERAE Days 2023 CTF. Check <a class="underline text-sky-500" href="https://github.com/gmo-ierae/ierae-days-ctf-2023">https://github.com/gmo-ierae/ierae-days-ctf-2023</a> for the files.</p>
+  <p>Note that only flag1 is valid as the answer.</p>
+  <code style="background-color: rgb(229 231 235); border-radius: 4px; padding: .1em .3em .2em .3em; font-size: 0.85em; white-space: break-spaces;">nc {chall.host} {chall.port}</code>
+flag: "IERAE{t0_MAK3_a_CR4SH_Is_7H3_fIr57_StEp_Of_PWn}"
+flagFormat: "IERAE{[\\x20-\\x7e]+}"
+authors:
+  - charo
+tags:
+  - pwn
+  - homework
+canonical_name: pngparser
+score: 1
+order: 100
+remote:
+  compose: ./challenge/compose.yaml

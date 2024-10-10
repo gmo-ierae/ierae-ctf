@@ -1,0 +1,16 @@
+name: "Futari APIs"
+description: >
+  <code style="background-color: rgb(229 231 235); border-radius: 4px; padding: .1em .3em .2em .3em; font-size: 0.85em; white-space: break-spaces;">curl 'http://{frontend.host}:{frontend.port}/search?user=peroro'</code>
+flag: "IERAE{yey!you_got_a_web_warmup_flag!}"
+flagFormat: "IERAE{[\\x20-\\x7e]+}" # this is used for flag submission validation. this value is public to users
+authors:
+  - tyage
+tags:
+  - web
+  - warmup
+canonical_name: futari-apis
+distfiles: ./distfiles # if required
+score: 500
+order: 20
+remote:
+  compose: ./challenge/compose.yaml

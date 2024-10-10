@@ -1,0 +1,11 @@
+services:
+  build_analog:
+    build: build_analog
+    volumes:
+      - ./distfiles:/distfiles
+    entrypoint:
+      - rsync
+      - -av
+      - --delete
+      - /work/.
+      - /distfiles

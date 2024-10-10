@@ -1,0 +1,31 @@
+services:
+  web:
+    build:
+      context: ./web
+      args:
+        - APP_ADMIN_USERNAME=botadmin
+        - APP_ADMIN_PASSWORD=Oe0reiZaemo0Ja2yeil1theeleikee7i
+    restart: unless-stopped
+    init: true
+    ports:
+      - 5000:5000
+    environment:
+      - FLAG=IERAE{G00d_Manipu1ation!_Over}
+      - SECRET_KEY=nie2niogoshohK1Eif7hiechum0johWi
+    deploy:
+      resources:
+        reservations:
+          memory: "200mb"
+  bot:
+    build: ./bot
+    restart: unless-stopped
+    init: true
+    ports:
+      - 1337:1337
+    environment:
+      - APP_ADMIN_USERNAME=botadmin
+      - APP_ADMIN_PASSWORD=Oe0reiZaemo0Ja2yeil1theeleikee7i
+    deploy:
+      resources:
+        reservations:
+          memory: "200mb"

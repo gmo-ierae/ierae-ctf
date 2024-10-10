@@ -1,0 +1,17 @@
+name: "Weak PRNG"
+canonical_name: weak-prng
+description: >
+  <p>Do you understand the traits of that famous PRNG?</p>
+  <code style="background-color: rgb(229 231 235); border-radius: 4px; padding: .1em .3em .2em .3em; font-size: 0.85em; white-space: break-spaces;">nc {challenge.host} {challenge.port}</code>
+flag: "IERAE{WhY_4r3_n'7_Y0u_u51n6_4_CSPRNG_3v3n_1n_2024}"
+flagFormat: "IERAE{[\\x20-\\x7e]+}"
+authors:
+  - ayokura
+tags:
+  - crypto
+  - easy
+distfiles: ./distfiles
+score: 500
+order: 50
+remote:
+  compose: ./challenge/compose.yaml

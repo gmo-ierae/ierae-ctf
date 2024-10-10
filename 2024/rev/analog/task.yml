@@ -1,0 +1,14 @@
+name: "analog"
+description: >
+  <p>The flag is encoded in analog form.</p>
+flag: "IERAE{CUX1gTetD0bi5Cj7fGJUiEYK52L6vFwoGIJa1FidfbU}"
+flagFormat: "IERAE{[\\x20-\\x7e]+}"
+authors:
+  - noname
+tags:
+  - rev
+  - medium
+canonical_name: analog
+distfiles: ./distfiles
+score: 500
+order: 60

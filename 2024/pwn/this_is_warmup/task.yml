@@ -1,0 +1,17 @@
+name: "This is warmup"
+description: >
+  <p>Trust me. If this problem is too difficult for you, I don't mind you burying me in the ground!</p>
+  <code style="background-color: rgb(229 231 235); border-radius: 4px; padding: .1em .3em .2em .3em; font-size: 0.85em; white-space: break-spaces;">nc {this-is-warmup.host} {this-is-warmup.port}</code>
+flag: "IERAE{s33?n07_41w4y5_1_cr3a73_d1ff1cu1t_pr0b13m5}"
+flagFormat: "IERAE{[\\x20-\\x7e]+}"
+authors:
+  - hugeh0ge
+tags:
+  - pwn
+  - warmup
+canonical_name: this-is-warmup
+distfiles: ./distfiles
+score: 500
+order: 20
+remote:
+  compose: ./challenge/docker-compose.yml

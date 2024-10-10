@@ -1,0 +1,10 @@
+services:
+  fortress:
+    build:
+      context: .
+    ulimits:
+      core: 0
+    ports:
+      - "20001:20001"
+    restart: unless-stopped
+    privileged: true

@@ -1,0 +1,18 @@
+name: "Fortress"
+description: >
+  <p>There is a crack in the fortress.</p>
+  <code style="background-color: rgb(229 231 235); border-radius: 4px; padding: .1em .3em .2em .3em; font-size: 0.85em; white-space: break-spaces;">nc {fortress.host} {fortress.port}</code>
+flag: "IERAE{ShanLiuChuanShi_b90b8aacd}"
+flagFormat: "IERAE{[\\x20-\\x7e]+}"
+authors:
+  - n4nu
+tags:
+  - rev
+  - crypto
+  - hard
+canonical_name: fortress
+distfiles: ./distfiles
+score: 500
+order: 70
+remote:
+  compose: ./challenge/docker-compose.yml

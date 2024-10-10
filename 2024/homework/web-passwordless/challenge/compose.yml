@@ -1,0 +1,11 @@
+services:
+  web:
+    build: .
+    environment:
+      FLAG: IERAE{no_password_n0_hacker}
+      MYSQL_HOST: localhost
+      MYSQL_USER: root
+      MYSQL_DATABASE: ierae
+      APP_ENV: production
+    ports:
+      - 4567:4567

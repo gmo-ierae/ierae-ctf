@@ -1,0 +1,11 @@
+name: weak-prng
+services:
+  challenge:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "19937:19937"
+    privileged: true
+    environment:
+      JAIL_ENV_FLAG: "IERAE{WhY_4r3_n'7_Y0u_u51n6_4_CSPRNG_3v3n_1n_2024}"

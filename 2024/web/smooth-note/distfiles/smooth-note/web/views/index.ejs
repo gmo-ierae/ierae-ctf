@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Smooth Note</title>
+    <link rel="stylesheet" href="/public/app.css" />
+  </head>
+
+  <body>
+    <%- include('header.ejs') %>
+
+    <div id="index-main" class="main">
+      <h1 class="title">Smooth Note</h1>
+
+      <form action="/" method="get" class="search-form">
+        <div>
+          <input type="text" name="search" id="search" required />
+          <label for="search">Search</label>
+        </div>
+      </form>
+
+      <div class="notes">
+      <% if (notes.length> 0) { %>
+      <ul>
+        <% for (let note of notes) { %>
+        <li><a href="/note/<%= note.id %>" class="title"> <%= note.title %> </a></li>
+        <% } %>
+      </ul>
+      <% } else { %>
+      <div>No notes.</div>
+      <% } %>
+      </div>
+
+      <button
+        popovertarget="create-form"
+        class="create-form-button"
+        id="show-form"
+      >
+        New Note
+      </button>
+
+      <div id="create-form" popover>
+        <form action="/create" method="post">
+          <div class="form-input">
+            <input
+              type="text"
+              name="title"
+              id="new-title"
+              required
+              placeholder="Hello"
+            />
+          </div>
+          <div class="form-input">
+            <textarea
+              name="body"
+              id="new-body"
+              required
+              placeholder="This note is too smooth!"
+            ></textarea>
+          </div>
+          <div class="form-input">
+            <textarea
+              name="style"
+              id="new-style"
+              placeholder="/* Write your style! */ body { color: red; }"
+            ></textarea>
+          </div>
+          <div class="form-input">
+            <button id="new-button">Create</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <%- include('footer.ejs') %>
+  </body>
+</html>

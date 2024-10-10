@@ -1,0 +1,13 @@
+name: "Vending Slot Machine"
+description: >
+  <p>This challenge is a homework problem from IERAE Days 2023 CTF. Check <a class="underline text-sky-500" href="https://github.com/gmo-ierae/ierae-days-ctf-2023">https://github.com/gmo-ierae/ierae-days-ctf-2023</a> for the files.</p>
+flag: "IERAE{H4v3_Y0u_3v3r_W0n_4_R34l_Slot_0f_4_V3nd1ng_M4ch1n3?}"
+flagFormat: "IERAE{[\\x20-\\x7e]+}"
+authors:
+  - n4nu
+tags:
+  - rev
+  - homework
+canonical_name: vending-slot-machine
+score: 1
+order: 100

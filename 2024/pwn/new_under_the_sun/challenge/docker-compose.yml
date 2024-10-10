@@ -1,0 +1,16 @@
+services:
+  new-under-the-sun:
+    build:
+      context: .
+    ulimits:
+      core: 0
+    ports:
+      - "19931:5000"
+    restart: unless-stopped
+    init: true
+    privileged: true
+    deploy:
+      resources:
+        reservations:
+          cpus: '0.5'
+          memory: 100M

@@ -1,0 +1,19 @@
+services:
+  web:
+    build: .
+    environment:
+      FLAG: IERAE{dummy}
+      MYSQL_HOST: mysql
+      MYSQL_USER: root
+      MYSQL_PASSWORD: ierae
+      MYSQL_DATABASE: ierae
+
+    volumes:
+      - ..:/workspaces:cached
+    command: sleep infinity
+
+  mysql:
+    image: mysql:8.2
+    environment:
+      MYSQL_ROOT_PASSWORD: ierae
+      MYSQL_DATABASE: ierae

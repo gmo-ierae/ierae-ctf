@@ -1,0 +1,251 @@
+@view-transition {
+  navigation: auto;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
+
+body {
+  background: rgb(239, 241, 244);
+  --button-color: #3c6187;
+  margin: 0;
+}
+
+.main {
+  width: 900px;
+  margin: 0 auto;
+}
+
+a {
+  color: #1b75d0;
+  text-decoration: none;
+}
+
+header {
+  background: #005bac;
+  padding: 0.1em;
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  marquee {
+    animation: blinker 1s linear infinite;
+  }
+}
+
+footer {
+  background: #005bac;
+  color: white;
+  height: 8rem;
+  width: 8rem;
+  padding: 1rem;
+  border-radius: 5rem;
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  box-shadow: 5px 5px 5px #999;
+}
+
+#index-main {
+  position: relative;
+
+  .title {
+    view-transition-name: site-title;
+  }
+
+  .search-form {
+    position: relative;
+    width: 250px;
+    height: 44px;
+    line-height: 44px;
+    margin: 2em 1em 1em 1em;
+    label {
+      position: absolute;
+      top: 0;
+      left: 0.7rem;
+      width: 100%;
+      color: #ccc;
+      transition: 0.2s all;
+      cursor: text;
+    }
+    input {
+      width: 100%;
+      border: 0;
+      outline: 0;
+      padding: 0.7rem;
+      box-shadow: none;
+      border-bottom: 3px solid #1b75d0;
+      color: #111;
+      &:hover {
+        border: 3px solid #1b75d0;
+        transition: 0.3s;
+      }
+    }
+    input:focus,
+    input:valid {
+      border-color: #1b75d0;
+    }
+    input:focus ~ label,
+    input:valid ~ label {
+      font-size: 14px;
+      top: -30px;
+      color: #1b75d0;
+    }
+  }
+
+  .create-form-button {
+    display: block;
+    background-color: var(--button-color);
+    color: white;
+    border: 0;
+    width: 8rem;
+    height: 3rem;
+    cursor: pointer;
+    margin: 1em;
+    font-size: 1rem;
+    transition: transform 0.4s cubic-bezier(0.1, 0, 0.3, 1);
+
+    &:hover {
+      background-color: #2f4c6a;
+      transform: scale3d(1.1,1.1,1);
+    }
+  }
+
+  #create-form {
+    transition: transform 0.5s, opacity 0.5s, display 0.5s allow-discrete;
+    transform: translateY(100vh);
+    opacity: 0;
+    border: 2px solid #999;
+    border-radius: 1rem;
+
+    &:popover-open {
+      @starting-style {
+        transform: translateY(100vh);
+        opacity: 0;
+      }
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    &::backdrop {
+      backdrop-filter: blur(3px);
+    }
+    .form-input {
+      margin: 1rem 1em;
+
+      input {
+        line-height: 1.5rem;
+        border: 2px solid #e5e7eb;
+        padding: 0.375rem 0.75rem;
+        border-radius: 0.375rem;
+        width: 20rem;
+        height: 2rem;
+        font-size: 16px;
+        &:focus {
+          border-color: var(--button-color);
+        }
+      }
+      textarea {
+        line-height: 1.5rem;
+        border: 2px solid #e5e7eb;
+        padding: 0.375rem 0.75rem;
+        border-radius: 0.375rem;
+        width: 20rem;
+        height: 5rem;
+        font-size: 16px;
+        &:focus {
+          border-color: var(--button-color);
+        }
+      }
+      button {
+        background-color: var(--button-color);
+        color: white;
+        width: 6rem;
+        height: 2.5rem;
+        cursor: pointer;
+        font-size: 1rem;
+        border: 0;
+        transition: transform 0.4s cubic-bezier(0.1, 0, 0.3, 1);
+    
+        &:hover {
+          background-color: #2f4c6a;
+          transform: scale3d(1.1,1.1,1);
+        }
+      }
+    }
+  }
+
+  .notes {
+    padding: 0;
+    &:not(:has(ul)) {
+      margin: 1em;
+    }
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 0;
+      margin: 0;
+      li {
+        display: block;
+        margin: 1em;
+        a {
+          border: 0.2em solid;
+          width: 10em;
+          padding: 1em;
+          display: block;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          border-color: #1b75d0;
+          --c: #1b75d0;
+          color: #0000;
+          background: linear-gradient(90deg, #fff 50%, var(--c) 0)
+              calc(100% - var(--_p, 0%)) / 200%,
+            linear-gradient(var(--c) 0 0) 0% 100% / var(--_p, 0%) no-repeat;
+          background-clip: text, padding-box, padding-box;
+          transition: 0s, color 0.5s, background-color 0.5s;
+          &:hover {
+            --_p: 100%;
+            transition: 0.5s, color 0s 0.5s, background-color 0s 0.5s;
+            view-transition-name: note-title;
+          }
+        }
+      }
+    }
+  }
+}
+
+#note-main {
+  .header {
+    display: flex;
+    flex-wrap: wrap;
+
+    .title {
+      view-transition-name: note-title;
+      word-wrap: break-word;
+      width: fit-content;
+      max-width: 80%;
+    }
+    .site-title {
+      font-size: small;
+      width: fit-content;
+      flex: 1;
+      text-align: right;
+      font-family: cursive;
+      a {
+        view-transition-name: site-title;
+      }
+    }
+  }
+
+  .body {
+    background: white;
+    padding: 2em;
+    margin: 1em 0;
+  }
+}

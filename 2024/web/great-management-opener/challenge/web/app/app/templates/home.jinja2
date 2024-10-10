@@ -1,0 +1,14 @@
+{% extends "base.jinja2" %}
+{% block content %}
+    {% if current_user.is_authenticated %}
+        <div class="d-grid gap-2">
+            <p class="text-center">Hello {{ current_user.username }}</p>
+            <a href="{{ url_for('logout') }}" class="btn btn-lg btn-secondary">Logout</a>
+        </div>
+    {% else %}
+        <div class="d-grid gap-2">
+            <a href="{{ url_for('register') }}" class="btn btn-lg btn-primary">Register</a>
+            <a href="{{ url_for('login') }}" class="btn btn-lg btn-primary">Login</a>
+        </div>
+    {% endif %}
+{% endblock %}

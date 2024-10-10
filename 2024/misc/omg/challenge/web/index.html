@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>OMG</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script>
+        const tasks = [
+            "[Crypto] derangement",
+            "[Reversing] Assignment",
+            "[Pwn] This is warmup",
+            "[Web] Futari APIs",
+        ];
+
+        window.addEventListener("popstate", (e) => {
+            // Popup the ad when the browser back button.
+            // 戻るボタンを押したときに広告を出す処理
+            const m = new bootstrap.Modal(ADModal, { backdrop: false });
+            task.innerText = tasks[Math.floor(Math.random() * tasks.length)];
+            cntdwn.innerText = `${e.state.i} more to go! Go for it! / 残り${e.state.i}回！がんばって！`;
+            m.show();
+
+            // Output a FLAG when the history has been returned to the end.
+            // 戻り切ったときにFLAGを出力する処理
+            if (e.state.i == 0) {
+                cntdwn.innerText = atob("SUVSQUV7VHIzbmR5XzRkcy5MT0x9");
+                init();
+            }
+        });
+
+        function init() {
+            for (let i = 0; i < 34; i++) {
+                history.pushState({ i: i }, "");
+            }
+
+            startbtn.style.visibility = "hidden";
+        }
+    </script>
+</head>
+
+<body>
+    <div class="container p-2">
+        <p class="h2 text-center">Let's press the browser back button 33 times. / 戻るボタンを33回押そう！</p>
+        <div class="d-grid gap-2 col-6 mx-auto">
+            <button id="startbtn" type="button" class="btn btn-primary " onclick="init()">Start / 始める</button>
+        </div>
+
+        <div class="modal fade" id="ADModal" tabindex="-1" aria-labelledby="ADModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="ADModalLabel">Advertisement / こちらもおすすめ</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <span class="badge text-bg-light">warmup</span>
+                        <div id="task" class="fw-bold d-inline"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <p id="cntdwn"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

@@ -1,0 +1,17 @@
+name: "splitting"
+canonical_name: splitting
+description: >
+  <p>Do you need to solve many ECDLPs?</p>
+  <code style="background-color: rgb(229 231 235); border-radius: 4px; padding: .1em .3em .2em .3em; font-size: 0.85em; white-space: break-spaces;">nc {challenge.host} {challenge.port}</code>
+flag: "IERAE{7de6b745404269a0d7b40955047921c6860e4438c73eb095090e75c8fb00cb51}"
+flagFormat: "IERAE{[\\x20-\\x7e]+}"
+authors:
+  - mitsu
+tags:
+  - crypto
+  - easy
+distfiles: ./distfiles
+score: 500
+order: 50
+remote:
+  compose: ./challenge/compose.yaml

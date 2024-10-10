@@ -1,0 +1,1 @@
+../challenge/patched_setting.cgi

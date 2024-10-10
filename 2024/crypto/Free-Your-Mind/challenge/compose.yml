@@ -1,0 +1,12 @@
+services:
+  challenge:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "17285:17285"
+    deploy:
+      resources:
+        reservations:
+          cpus: '1'
+          memory: 256M

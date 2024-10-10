@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+  cryptoec:
+    build: .
+    environment:
+      FLAG: "IERAE{f4e4b064e67ff2e77f81685c51ca5d59631d2560}"
+    restart: unless-stopped
+    ports:
+      - 21449:21449
+    deploy:
+      resources:
+        reservations:
+          cpus: '0.5'
+          memory: 100M

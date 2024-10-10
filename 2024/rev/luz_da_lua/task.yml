@@ -1,0 +1,16 @@
+name: "Luz Da Lua"
+description: >
+  <p>The luac file is compiled and tested on Lua 5.4.7</p>
+  <code style="background-color: rgb(229 231 235); border-radius: 4px; padding: .1em .3em .2em .3em; font-size: 0.85em; white-space: break-spaces;">lua LuzDaLua.luac</code>
+flag: "IERAE{Lua_1s_S0_3duc4t1onal}"
+flagFormat: "IERAE{[\\x20-\\x7e]+}"
+authors:
+  - n4nu
+tags:
+  - rev
+  - was_warmup
+  - easy
+canonical_name: luz-da-lua
+distfiles: ./distfiles
+score: 500
+order: 50

@@ -1,0 +1,13 @@
+services:
+  free2free:
+    build:
+      context: .
+    ulimits:
+      core: 0
+    ports:
+      - "31622:31622"
+    restart: unless-stopped
+    deploy:
+      resources:
+        reservations:
+          memory: 300M

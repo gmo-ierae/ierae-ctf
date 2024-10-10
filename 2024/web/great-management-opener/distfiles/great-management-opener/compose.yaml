@@ -1,0 +1,23 @@
+services:
+  web:
+    build:
+      context: ./web
+      args:
+        - APP_ADMIN_USERNAME=botadmin
+        - APP_ADMIN_PASSWORD=password
+    restart: unless-stopped
+    init: true
+    ports:
+      - 5000:5000
+    environment:
+      - FLAG=IERAE{dummy}
+      - SECRET_KEY=dummy
+  bot:
+    build: ./bot
+    restart: unless-stopped
+    init: true
+    ports:
+      - 1337:1337
+    environment:
+      - APP_ADMIN_USERNAME=botadmin
+      - APP_ADMIN_PASSWORD=password

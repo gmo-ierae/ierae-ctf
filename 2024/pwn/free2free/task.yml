@@ -1,0 +1,17 @@
+name: "free2free"
+description: >
+  <p>Have you ever wondered if an object is really deleted? Don't worry, now you have SUPER DELETE</p>
+  <code style="background-color: rgb(229 231 235); border-radius: 4px; padding: .1em .3em .2em .3em; font-size: 0.85em; white-space: break-spaces;">nc {free2free.host} {free2free.port}</code>
+flag: "IERAE{d0ubl3_fr33_61v35_u5_7h3_p0w3r_251853}"
+flagFormat: "IERAE{[\\x20-\\x7e]+}"
+authors:
+  - rona
+tags:
+  - pwn
+  - medium
+canonical_name: free2free
+distfiles: ./distfiles
+score: 500
+order: 60
+remote:
+  compose: ./challenge/docker-compose.yml

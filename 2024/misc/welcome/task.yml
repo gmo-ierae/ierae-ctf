@@ -1,0 +1,13 @@
+name: "Welcome"
+description: > # available placeholders: {{service_name}.host}, {{service_name}.port}, {service_name} is the same as service name in compose.yml
+  <p>Welcome to IERAE CTF 2024!</p>
+  <p>The flag is on <a class="underline text-sky-500" href="https://discord.gg/MGZbu88UzU">Discord</a></p>
+flag: "IERAE{An_incredibly_interesting_flag}" # read flag
+flagFormat: "IERAE{[\\x20-\\x7e]+}" # this is used for flag submission validation. this value is public to users
+authors:
+  - IERAE
+tags:
+  - "sanity check"
+canonical_name: welcome
+score: 500
+order: 0 # this is used for the ordering on the challenge list page. (sanity_check: 0, OMG: 1, others: 50, homework: 100)

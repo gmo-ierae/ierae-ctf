@@ -1,0 +1,6 @@
+services:
+  chall:
+    build: .
+    restart: unless-stopped
+    ports:
+      - "5555:22"

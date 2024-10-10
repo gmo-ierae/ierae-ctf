@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Smooth Note</title>
+    <link rel="stylesheet" href="/public/app.css" />
+    <style>
+      <%= note.style %>
+    </style>
+  </head>
+
+  <body>
+    <%- include('header.ejs') %>
+
+    <div id="note-main" class="main">
+      <div class="header">
+        <h1 class="title"><%= note.title %></h1>
+        <h2 class="site-title">
+          <a href="/">Smooth Note</a>
+        </h2>
+      </div>
+
+      <div class="body"><%= note.body %></div>
+    </div>
+
+    <%- include('footer.ejs') %>
+  </body>
+</html>

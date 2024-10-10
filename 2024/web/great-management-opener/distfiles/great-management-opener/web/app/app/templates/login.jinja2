@@ -1,0 +1,14 @@
+{% extends "base.jinja2" %}
+{% block content %}
+    <form action="{{ url_for('login') }}" method="POST" class="row">
+        <div class="col-6 m-auto">
+            <div class="mb-3">
+                <input type="text" name="username" id="username" placeholder="Username" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <input type="password" name="password" id="password" placeholder="Password" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Login</button>
+        </div>
+    </form>
+{% endblock %}

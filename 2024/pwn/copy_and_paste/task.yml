@@ -1,0 +1,19 @@
+name: "Copy & Paste"
+description: >
+  <p>I set this problem as warmup, but my teammates disagreed, so I changed the tag.
+  I strongly recommend you to use the provided docker env, not your host env.</p>
+  <code style="background-color: rgb(229 231 235); border-radius: 4px; padding: .1em .3em .2em .3em; font-size: 0.85em; white-space: break-spaces;">nc {copy-and-paste.host} {copy-and-paste.port}</code>
+flag: "IERAE{7h3_f1rs7_s73p_7o_b3_4_pwn3r_51a7806b}"
+flagFormat: "IERAE{[\\x20-\\x7e]+}"
+authors:
+  - hugeh0ge
+tags:
+  - pwn
+  - was_warmup
+  - easy
+canonical_name: copy-and-paste
+distfiles: ./distfiles
+score: 500
+order: 50
+remote:
+  compose: ./challenge/docker-compose.yml

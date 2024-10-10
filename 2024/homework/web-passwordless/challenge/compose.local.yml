@@ -1,0 +1,11 @@
+services:
+  web:
+    build: .
+    environment:
+      FLAG: IERAE{dummy}
+      MYSQL_HOST: ${MYSQL_HOST:-localhost}
+      MYSQL_USER: ${MYSQL_USER:-root}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-ierae}
+      APP_ENV: ${APP_ENV:-production}
+    ports:
+      - 4567:4567

@@ -1,0 +1,15 @@
+name: "PNGParser (flag 2)"
+description: >
+  <p>This challenge is a homework problem from IERAE Days 2023 CTF. Check <a class="underline text-sky-500" href="https://github.com/gmo-ierae/ierae-days-ctf-2023">https://github.com/gmo-ierae/ierae-days-ctf-2023</a> for the files.</p>
+  <p>Note that only flag2 is valid as the answer.</p>
+  <p>See "PNGParser (flag 1)" for the server information.</p>
+flag: "IERAE{0N3_M0r3_IhDr_t0_RULe_tHeM_4ll}"
+flagFormat: "IERAE{[\\x20-\\x7e]+}"
+authors:
+  - charo
+tags:
+  - pwn
+  - homework
+canonical_name: pngparser2
+score: 1
+order: 100

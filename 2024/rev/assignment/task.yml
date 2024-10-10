@@ -1,0 +1,14 @@
+name: "Assignment"
+description: >
+  <p>Assignment is the root of everything in procedural programs.</p>
+flag: "IERAE{s0me_r4nd0m_str1ng_5a9354c}"
+flagFormat: "IERAE{[\\x20-\\x7e]+}"
+authors:
+  - hugeh0ge
+tags:
+  - rev
+  - warmup
+canonical_name: assignment
+distfiles: ./distfiles
+score: 500
+order: 20

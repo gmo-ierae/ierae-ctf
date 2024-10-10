@@ -1,0 +1,16 @@
+name: "ec-sig"
+description: >
+  <p>This challenge is a homework problem from IERAE Days 2023 CTF. Check <a class="underline text-sky-500" href="https://github.com/gmo-ierae/ierae-days-ctf-2023">https://github.com/gmo-ierae/ierae-days-ctf-2023</a> for the files.</p>
+  <code style="background-color: rgb(229 231 235); border-radius: 4px; padding: .1em .3em .2em .3em; font-size: 0.85em; white-space: break-spaces;">nc {cryptoec.host} {cryptoec.port}</code>
+flag: "IERAE{f4e4b064e67ff2e77f81685c51ca5d59631d2560}"
+flagFormat: "IERAE{[\\x20-\\x7e]+}"
+authors:
+  - ta1yak1
+tags:
+  - crypto
+  - homework
+canonical_name: ec-sig
+score: 1
+order: 100
+remote:
+  compose: ./challenge/compose.yml

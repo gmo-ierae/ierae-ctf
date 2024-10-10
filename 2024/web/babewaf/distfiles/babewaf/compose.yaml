@@ -1,0 +1,16 @@
+services:
+  proxy:
+    build: ./proxy
+    restart: unless-stopped
+    ports:
+      - 3000:3000
+    environment:
+      - BACKEND=http://backend:3000/
+    init: true
+  backend:
+    build: ./backend
+    restart: unless-stopped
+    ports:
+      - 3000
+    environment:
+      - FLAG=IERAE{dummy}

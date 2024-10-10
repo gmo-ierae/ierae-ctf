@@ -1,0 +1,17 @@
+name: "Command Recorder"
+description: >
+  <p>This tool enables you to record and execute command sequences!</p>
+  <code style="background-color: rgb(229 231 235); border-radius: 4px; padding: .1em .3em .2em .3em; font-size: 0.85em; white-space: break-spaces;">nc {command-recorder.host} {command-recorder.port}</code>
+flag: "IERAE{wh47_A_c01ncid3nc3_f3e9202f}"
+flagFormat: "IERAE{[\\x20-\\x7e]+}"
+authors:
+  - hugeh0ge
+tags:
+  - pwn
+  - easy
+canonical_name: command-recorder
+distfiles: ./distfiles
+score: 500
+order: 51
+remote:
+  compose: ./challenge/docker-compose.yml

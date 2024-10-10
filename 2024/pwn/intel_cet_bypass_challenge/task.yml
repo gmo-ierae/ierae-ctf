@@ -1,0 +1,16 @@
+name: "Intel CET Bypass Challenge"
+description: >
+  <p>This is a userland Intel CET bypass challenge. Read the provided <code style="background-color: rgb(229 231 235); border-radius: 4px; padding: .1em .3em .2em .3em; font-size: 0.85em; white-space: break-spaces;">README</code> carefully.</p>
+  <code style="background-color: rgb(229 231 235); border-radius: 4px; padding: .1em .3em .2em .3em; font-size: 0.85em; white-space: break-spaces; text-decoration: line-through;">nc 52.165.26.180 8810</code>
+  <p>remote server is offline.</p>
+flag: "IERAE{this_is_actually_solvable_w/o_g_buf_try_if_interested_2da09468}"
+flagFormat: "IERAE{[\\x20-\\x7e]+}"
+authors:
+  - hugeh0ge
+tags:
+  - pwn
+  - medium
+canonical_name: intel-cet-bypass
+distfiles: ./distfiles
+score: 500
+order: 60

@@ -1,0 +1,14 @@
+name: "The Kudryavka Sequence"
+description: >
+  <p>The flag has been lost.</p>
+flag: "IERAE{3xpec7at1on_1s_a_w0rd_r00ted_1n_g1ving_up.}"
+flagFormat: "IERAE{[\\x20-\\x7e]+}"
+authors:
+  - n4nu
+tags:
+  - rev
+  - easy
+canonical_name: kudryavka-sequence
+distfiles: ./distfiles
+score: 500
+order: 51

@@ -1,0 +1,3 @@
+We built the CGI with https://ftp.gnu.org/gnu/cgicc/cgicc-3.2.20.tar.gz
+Its md5 hash: 5b56a513c697fb019e253a565ffd06f2
+You can assume no malicious modification is made for original_setting.cgi, and hence we used cgicc AS IS (we just wrote a cpp file and built it with g++ and cgicc).

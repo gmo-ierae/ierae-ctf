@@ -1,0 +1,16 @@
+name: splitting-jail
+services:
+  challenge:
+    build:
+      context: .
+      dockerfile: Dockerfile.jail
+    ports:
+      - "11119:11119"
+    privileged: true
+    environment:
+      JAIL_ENV_FLAG: "IERAE{7de6b745404269a0d7b40955047921c6860e4438c73eb095090e75c8fb00cb51}"
+    deploy:
+      resources:
+        reservations:
+          cpus: '2'
+          memory: 2048M

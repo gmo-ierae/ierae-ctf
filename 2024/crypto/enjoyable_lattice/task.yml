@@ -1,0 +1,15 @@
+---
+name: "enjoyable lattice"
+description: >
+  <p>Enjoy lattice encryption!</p>
+authors:
+  - gyoza_beer
+flag: "IERAE{1n5p1r3d_3ncrypt10n_R1dd135_4nd_3xpl01t4t10n5}"
+flagFormat: "IERAE{[\\x20-\\x7e]+}"
+tags:
+  - crypto
+  - medium
+distfiles: ./distfiles
+canonical_name: enjoyable-lattice
+score: 500
+order: 60

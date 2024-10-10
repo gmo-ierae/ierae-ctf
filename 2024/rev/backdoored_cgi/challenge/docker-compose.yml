@@ -1,0 +1,18 @@
+# TODO: use container-spawner to separate envs
+version: '3'
+services:
+  backdooredcgi:
+    build:
+      context: .
+    ulimits:
+      core: 0
+    ports:
+      - "19810:19810"
+    restart: unless-stopped
+    deploy:
+      resources:
+        reservations:
+          cpus: '0.1'
+        limits:
+          cpus: '0.5'
+          memory: 300M

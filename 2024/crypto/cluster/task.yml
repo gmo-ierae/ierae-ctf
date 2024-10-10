@@ -1,0 +1,16 @@
+---
+name: "cluster"
+canonical_name: cluster
+description: >
+  <p>I know there is a cluster of RSA lovers. </p>
+  <p>I know there is a cluster of unknown RSA challenges. </p>
+flag: "IERAE{9fceac6e79e1e23d718610c4de7b4844}"
+flagFormat: "IERAE{[\\x20-\\x7e]+}"
+authors:
+  - ta1yak1
+tags:
+  - crypto
+  - medium
+distfiles: ./distfiles
+score: 500
+order: 60

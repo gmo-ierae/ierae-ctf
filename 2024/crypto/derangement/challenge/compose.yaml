@@ -1,0 +1,11 @@
+name: derangement
+services:
+  challenge:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "55555:55555"
+    privileged: true
+    environment:
+      JAIL_ENV_FLAG: "IERAE{th3r35_n0_5uch_th!ng_45_p3rf3ct_3ncrypt!0n}"

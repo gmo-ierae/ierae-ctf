@@ -1,0 +1,18 @@
+name: "gnalang"
+description: >
+  <p>I invented a new language.
+  Your task is to write a palindromic polyglot of JavaScript and POSIX Shellscript!</p>
+  <code style="background-color: rgb(229 231 235); border-radius: 4px; padding: .1em .3em .2em .3em; font-size: 0.85em; white-space: break-spaces;">nc {gnalang.host} {gnalang.port}</code>
+flag: "IERAE{0mg_th3y_4r3_s0_t0re13nt_68a80ad1}"
+flagFormat: "IERAE{[\\x20-\\x7e]+}"
+authors:
+  - hugeh0ge
+tags:
+  - misc
+  - medium
+canonical_name: gnalang
+distfiles: ./distfiles
+score: 500
+order: 60
+remote:
+  compose: ./challenge/docker-compose.yml

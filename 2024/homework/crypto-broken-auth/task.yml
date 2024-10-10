@@ -1,0 +1,16 @@
+name: "broken-auth"
+description: >
+  <p>This challenge is a homework problem from IERAE Days 2023 CTF. Check <a class="underline text-sky-500" href="https://github.com/gmo-ierae/ierae-days-ctf-2023">https://github.com/gmo-ierae/ierae-days-ctf-2023</a> for the files.</p>
+  <code style="background-color: rgb(229 231 235); border-radius: 4px; padding: .1em .3em .2em .3em; font-size: 0.85em; white-space: break-spaces;">ssh -p {chall.port} flag@{chall.host}</code>
+flag: "IERAE{a8059284217fdb4ed0be5571f42a1bcf60154f50}"
+flagFormat: "IERAE{[\\x20-\\x7e]+}"
+authors:
+  - elliptic_shiho
+tags:
+  - crypto
+  - homework
+canonical_name: broken-auth
+score: 1
+order: 100
+remote:
+  compose: ./challenge/compose.yaml

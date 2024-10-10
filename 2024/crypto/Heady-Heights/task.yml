@@ -1,0 +1,14 @@
+name: "Heady Heights"
+canonical_name: Heady-Heights
+description: >
+  <p>It's Perfectly Safe!</p>
+flag: "IERAE{44b508bb0782d3daf78d8afbb260fc75862a167414f2e99c4acda2e61960f4d6}"
+flagFormat: "IERAE{[\\x20-\\x7e]+}"
+authors:
+  - elliptic_shiho
+tags:
+  - crypto
+  - medium
+distfiles: ./distfiles
+score: 500
+order: 60

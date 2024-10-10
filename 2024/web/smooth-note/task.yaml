@@ -1,0 +1,20 @@
+name: "Smooth Note"
+description: >
+  <p>This note is smoooooooooth! But wait, something is broken!</p>
+  <ul class="ml-6 list-disc">
+    <li>Challenge: <a class="underline text-sky-500" href="http://{web.host}:{web.port}">http://{web.host}:{web.port}</a></li>
+    <li>Admin bot: <a class="underline text-sky-500" href="http://{bot.host}:{bot.port}">http://{bot.host}:{bot.port}</a></li>
+  </ul>
+flag: "IERAE{profniyaniya}"
+flagFormat: "IERAE{[\\x20-\\x7e]+}" # this is used for flag submission validation. this value is public to users
+authors:
+  - tyage
+tags:
+  - web
+  - medium
+canonical_name: smooth-note
+distfiles: ./distfiles # if required
+score: 500
+order: 60
+remote:
+  compose: ./challenge/compose.yaml

@@ -1,0 +1,17 @@
+name: "Free Your Mind"
+canonical_name: free-your-mind
+description: >
+  <p>We need a <i>Purest Unobtainium</i></p>
+  <code style="background-color: rgb(229 231 235); border-radius: 4px; padding: .1em .3em .2em .3em; font-size: 0.85em; white-space: break-spaces;">nc {challenge.host} {challenge.port}</code>
+flag: "IERAE{e70019b319bbac72653c3b3a357be327a115921419670277eaa88760268c3f9752d7bcd16ca8fb304feefe4db851dd962901381891cdd7b7147f03a07611d61c}"
+flagFormat: "IERAE{[\\x20-\\x7e]+}"
+authors:
+  - elliptic_shiho
+tags:
+  - crypto
+  - hard
+distfiles: ./distfiles
+score: 500
+order: 70
+remote:
+  compose: ./challenge/compose.yml
