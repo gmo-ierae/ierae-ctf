@@ -1,0 +1,15 @@
+services:
+  fault-tolerance-javascript:
+    build:
+      context: .
+    ulimits:
+      core: 0
+    ports:
+      - "9319:9319"
+    restart: unless-stopped
+    init: true
+    deploy:
+      resources:
+        reservations:
+          cpus: '0.5'
+          memory: 100M

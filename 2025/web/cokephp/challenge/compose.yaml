@@ -1,0 +1,17 @@
+services:
+  app:
+    build: ./app
+    init: true
+    ports:
+      - 9000
+    environment:
+      - APP_ENV=production
+      - FLAG=IERAE{1_Made_this_chAllenGe_whilE_drinking_c0ke}
+
+  nginx:
+    build: ./nginx
+    restart: unless-stopped
+    ports:
+      - "8000:80"
+    depends_on:
+      - app

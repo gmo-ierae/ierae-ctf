@@ -1,0 +1,20 @@
+name: "canvasbox"
+description: >
+  <p>The flag is hidden in the canvas. You cannot access it, even with XSS...</p>
+  <ul class="ml-6 list-disc">
+    <li>Challenge: <a class="underline text-sky-500" href="http://{web.host}:{web.port}">http://{web.host}:{web.port}</a></li>
+    <li>Admin bot: <a class="underline text-sky-500" href="http://{bot.host}:{bot.port}">http://{bot.host}:{bot.port}</a></li>
+  </ul>
+flag: "IERAE{DOMDOMDOMDOMDOMDOMDOMDOMDOMDOMDOMDOMDOMDOMDOMDOMDOMDOMDOMDOMDOMDOMDOMDOMDOMDOMDOMDOMDOMDOM}"
+flagFormat: "IERAE{[\\x20-\\x7e]+}"
+authors:
+  - Ark
+tags:
+  - web
+  - hard
+canonical_name: canvasbox
+distfiles: ./distfiles
+score: 500
+order: 40
+remote:
+  compose: ./challenge/compose.yaml

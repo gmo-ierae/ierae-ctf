@@ -1,0 +1,20 @@
+name: "CokePHP"
+description: >
+  <p>I've built the secure PHP web framework. Can you hack it?</p>
+  <p><span data-mce-style="color: #000000;" style="color: rgb(0, 0, 0);"><strong>NOTE: This problem is a "spawner" challenge.</strong></span><br data-mce-bogus="1"></p><p><span data-mce-style="color: #000000;" style="color: rgb(0, 0, 0);"><strong>Take the following steps to launch the server:</strong></span></p><ol style="list-style-type: decimal;padding-left: 20px;"><li>Push the "<strong><span data-mce-style="color: #e03e2d;" style="color: rgb(224, 62, 45);">Spawn Instnace</span></strong>" button below</li><li>Wait for a while until the server launches</li><li>The server address is shown here: <br><center><a class="underline text-sky-500" href="http://{nginx.host}:{nginx.port}">http://{nginx.host}:{nginx.port}</a></center></li></ol>
+flag: "IERAE{1_Made_this_chAllenGe_whilE_drinking_c0ke}"
+flagFormat: "IERAE{[\\x20-\\x7e]+}"
+authors:
+  - hugeh0ge
+  - mage
+tags:
+  - web
+  - extreme
+canonical_name: cokephp
+distfiles: ./distfiles
+score: 500
+order: 50
+remote:
+  compose: ./challenge/compose.yaml
+  spawner:
+    ttl: 300

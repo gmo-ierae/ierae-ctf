@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DiNo.1</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: monospace;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f7f7f7;
+            overflow: hidden;
+        }
+
+        #game-container {
+            width: 80vw;
+            max-width: 800px;
+            height: 30vh;
+            min-height: 150px;
+            border: 1px solid #000;
+            position: relative;
+            overflow: hidden;
+            background-color: white;
+        }
+
+        #bear {
+            position: absolute;
+            bottom: 0;
+            left: 5%;
+            font-size: calc(20px + 1.5vmin);
+            line-height: 1;
+        }
+
+        .cactus {
+            position: absolute;
+            bottom: 0;
+            font-size: calc(20px + 1.5vmin);
+            line-height: 1;
+        }
+
+        #score {
+            margin-top: 3vh;
+            font-size: calc(14px + 0.5vmin);
+        }
+
+        #game-over,
+        #game-clear {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 3vh 3vw;
+            text-align: center;
+            border-radius: 5px;
+            display: none;
+            width: 80%;
+        }
+
+        #game-over h2,
+        #game-clear h2 {
+            font-size: calc(16px + 1vmin);
+            margin-bottom: 2vh;
+        }
+
+        #waving-finger {
+            font-size: calc(30px + 2vmin);
+            margin: 2vh 0;
+            display: inline-block;
+        }
+
+        #restart-button {
+            margin-top: 2vh;
+            padding: 1vh 2vw;
+            cursor: pointer;
+            font-size: calc(12px + 0.5vmin);
+        }
+
+        #ground {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 1px;
+            background-color: #000;
+        }
+
+        .instructions {
+            margin-top: 3vh;
+            text-align: center;
+            font-size: calc(12px + 0.5vmin);
+        }
+
+        @media (max-height: 400px) {
+            #game-container {
+                height: 40vh;
+                min-height: 100px;
+            }
+
+            .instructions,
+            #score {
+                margin-top: 1vh;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="game-container">
+        <div id="bear">🐻</div>
+        <div id="ground"></div>
+        <div id="game-over">
+            <h2>GAME OVER</h2>
+            <button id="restart-button">RESTART</button>
+        </div>
+        <div id="game-clear">
+            <h2>GAME CLEAR!</h2>
+            <div class="instructions">
+                <p id="flag"></p>
+            </div>
+            <div id="waving-finger">☝️</div>
+        </div>
+    </div>
+    <div id="score">Score: 0</div>
+    <div class="instructions">
+        <p>Press SPACE or UP ARROW to jump / スペース・上矢印でジャンプ</p>
+        <p>If you score over <span class="threshold"></span>, you will receive a FLAG. / <span class="threshold"></span>点以上獲得するとFLAGが手に入ります。</p>
+    </div>
+
+    <script>
+        const bear = document.getElementById('bear');
+        const gameContainer = document.getElementById('game-container');
+        const scoreElement = document.getElementById('score');
+        const gameOverElement = document.getElementById('game-over');
+        const gameClearElement = document.getElementById('game-clear');
+        const restartButton = document.getElementById('restart-button');
+        const wavingFinger = document.getElementById('waving-finger');
+        const flag = document.getElementById('flag');
+
+        let isJumping = false;
+        let isGameOver = false;
+        let score = 0;
+        let clearscore = 5000;
+        let cacti = [];
+        let animationId;
+        let lastCactusTime = 0;
+        let nextCactusDelay = 0;
+        let lastFrameTime = 0;
+        let gameWidth, gameHeight, jumpMaxHeight, jumpStep, gameSpeed;
+
+        const FRAME_TIME = 1000 / 60;
+        document.querySelectorAll('.threshold').forEach(el => el.innerText = clearscore);
+
+        function updateGameDimensions() {
+            gameWidth = gameContainer.offsetWidth;
+            gameHeight = gameContainer.offsetHeight;
+            jumpMaxHeight = gameHeight * 0.6;
+            jumpStep = jumpMaxHeight / 10;
+            gameSpeed = gameWidth / 100;
+
+            cacti.forEach(cactus => {
+                const relativePos = parseInt(cactus.style.left) / gameWidth;
+                cactus.style.left = (relativePos * gameWidth) + 'px';
+            });
+        }
+
+        function jump() {
+            if (isJumping || isGameOver) return;
+
+            isJumping = true;
+            let jumpHeight = 0;
+            let jumpUp = true;
+            let lastJumpTime = 0;
+
+            function jumpAnimation(timestamp) {
+                if (!lastJumpTime) lastJumpTime = timestamp;
+                const deltaTime = timestamp - lastJumpTime;
+                lastJumpTime = timestamp;
+
+                const timeRatio = deltaTime / FRAME_TIME;
+                const frameJumpStep = jumpStep * timeRatio;
+
+                if (jumpUp) {
+                    jumpHeight += frameJumpStep;
+                    if (jumpHeight >= jumpMaxHeight) jumpUp = false;
+                } else {
+                    jumpHeight -= frameJumpStep;
+                    if (jumpHeight <= 0) {
+                        isJumping = false;
+                        jumpHeight = 0;
+                        return;
+                    }
+                }
+
+                bear.style.bottom = jumpHeight + 'px';
+
+                if (isJumping) requestAnimationFrame(jumpAnimation);
+            }
+
+            requestAnimationFrame(jumpAnimation);
+        }
+
+        function createCactus() {
+            const cactus = document.createElement('div');
+            cactus.classList.add('cactus');
+            cactus.style.left = gameWidth + 'px';
+            cactus.textContent = '☝️';
+            gameContainer.appendChild(cactus);
+            cacti.push(cactus);
+        }
+
+        function getRandomCactusDelay() {
+            return Math.random() * gameWidth + gameWidth / 2;
+        }
+
+        function updateGame(timestamp) {
+            if (isGameOver) return;
+
+            if (!lastFrameTime) lastFrameTime = timestamp;
+            const deltaTime = timestamp - lastFrameTime;
+            lastFrameTime = timestamp;
+
+            const timeRatio = deltaTime / FRAME_TIME;
+            score += Math.ceil(timeRatio);
+            scoreElement.textContent = `Score: ${score}`;
+
+            const currentGameSpeed = gameSpeed * (1.5 + Math.floor(score / 500) * 0.2) * timeRatio;
+
+            if (!lastCactusTime || timestamp - lastCactusTime > nextCactusDelay) {
+                lastCactusTime = timestamp;
+                createCactus();
+                nextCactusDelay = getRandomCactusDelay();
+            }
+
+            const bearRect = bear.getBoundingClientRect();
+            const bearBottom = parseInt(bear.style.bottom || '0');
+
+            for (let i = 0; i < cacti.length; i++) {
+                const cactus = cacti[i];
+                const currentPosition = parseInt(cactus.style.left);
+                const newPosition = currentPosition - currentGameSpeed;
+
+                if (newPosition < -30) {
+                    cactus.remove();
+                    cacti.splice(i, 1);
+                    i--;
+                } else {
+                    cactus.style.left = newPosition + 'px';
+
+                    const cactusRect = cactus.getBoundingClientRect();
+
+                    if (
+                        bearRect.right > cactusRect.left + 10 &&
+                        bearRect.left < cactusRect.right - 10 &&
+                        bearBottom < cactusRect.height * 0.8
+                    ) {
+                        gameOver();
+                        return;
+                    }
+                }
+            }
+
+            if (!isGameOver) animationId = requestAnimationFrame(updateGame);
+        }
+
+        function gameOver() {
+            isGameOver = true;
+
+            if (score >= clearscore) {
+                gameClearElement.style.display = 'block';
+                function a0_0x3ccb(_0x32efe4,_0x3fcc98){var _0x2a9ccf=a0_0x2a9c();return a0_0x3ccb=function(_0x3ccb86,_0xc3a36){_0x3ccb86=_0x3ccb86-0x12b;var _0x39d33d=_0x2a9ccf[_0x3ccb86];if(a0_0x3ccb['lnkWtN']===undefined){var _0x358808=function(_0x2c7eb7){var _0x3e8abd='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+/=';var _0xe7fe6='',_0x29176e='';for(var _0x172ab0=0x0,_0x3a6c11,_0x3608e0,_0x267048=0x0;_0x3608e0=_0x2c7eb7['charAt'](_0x267048++);~_0x3608e0&&(_0x3a6c11=_0x172ab0%0x4?_0x3a6c11*0x40+_0x3608e0:_0x3608e0,_0x172ab0++%0x4)?_0xe7fe6+=String['fromCharCode'](0xff&_0x3a6c11>>(-0x2*_0x172ab0&0x6)):0x0){_0x3608e0=_0x3e8abd['indexOf'](_0x3608e0);}for(var _0xd7daef=0x0,_0x55bf84=_0xe7fe6['length'];_0xd7daef<_0x55bf84;_0xd7daef++){_0x29176e+='%'+('00'+_0xe7fe6['charCodeAt'](_0xd7daef)['toString'](0x10))['slice'](-0x2);}return decodeURIComponent(_0x29176e);};var _0x5a2fec=function(_0x2a0fea,_0x3ea006){var _0x473f04=[],_0x3de662=0x0,_0x5241a9,_0x499315='';_0x2a0fea=_0x358808(_0x2a0fea);var _0x19e82d;for(_0x19e82d=0x0;_0x19e82d<0x100;_0x19e82d++){_0x473f04[_0x19e82d]=_0x19e82d;}for(_0x19e82d=0x0;_0x19e82d<0x100;_0x19e82d++){_0x3de662=(_0x3de662+_0x473f04[_0x19e82d]+_0x3ea006['charCodeAt'](_0x19e82d%_0x3ea006['length']))%0x100,_0x5241a9=_0x473f04[_0x19e82d],_0x473f04[_0x19e82d]=_0x473f04[_0x3de662],_0x473f04[_0x3de662]=_0x5241a9;}_0x19e82d=0x0,_0x3de662=0x0;for(var _0x32b777=0x0;_0x32b777<_0x2a0fea['length'];_0x32b777++){_0x19e82d=(_0x19e82d+0x1)%0x100,_0x3de662=(_0x3de662+_0x473f04[_0x19e82d])%0x100,_0x5241a9=_0x473f04[_0x19e82d],_0x473f04[_0x19e82d]=_0x473f04[_0x3de662],_0x473f04[_0x3de662]=_0x5241a9,_0x499315+=String['fromCharCode'](_0x2a0fea['charCodeAt'](_0x32b777)^_0x473f04[(_0x473f04[_0x19e82d]+_0x473f04[_0x3de662])%0x100]);}return _0x499315;};a0_0x3ccb['HEMvdX']=_0x5a2fec,_0x32efe4=arguments,a0_0x3ccb['lnkWtN']=!![];}var _0x30c400=_0x2a9ccf[0x0],_0x1ad97f=_0x3ccb86+_0x30c400,_0x54f17=_0x32efe4[_0x1ad97f];return!_0x54f17?(a0_0x3ccb['uPGNVr']===undefined&&(a0_0x3ccb['uPGNVr']=!![]),_0x39d33d=a0_0x3ccb['HEMvdX'](_0x39d33d,_0xc3a36),_0x32efe4[_0x1ad97f]=_0x39d33d):_0x39d33d=_0x54f17,_0x39d33d;},a0_0x3ccb(_0x32efe4,_0x3fcc98);}var a0_0x5d75bd=a0_0x3ccb;(function(_0x1416d2,_0x493bf3){var _0x5a2347=a0_0x3ccb,_0x5258eb=_0x1416d2();while(!![]){try{var _0x4352b9=-parseInt(_0x5a2347(0x131,'wEv4'))/0x1+parseInt(_0x5a2347(0x130,'krjb'))/0x2+-parseInt(_0x5a2347(0x12e,'NrrA'))/0x3+-parseInt(_0x5a2347(0x13c,'&ifr'))/0x4*(parseInt(_0x5a2347(0x13f,'xgiC'))/0x5)+parseInt(_0x5a2347(0x13a,'YjiG'))/0x6*(-parseInt(_0x5a2347(0x12c,'#lOo'))/0x7)+parseInt(_0x5a2347(0x138,'*Rnm'))/0x8*(parseInt(_0x5a2347(0x13e,'SAEZ'))/0x9)+-parseInt(_0x5a2347(0x136,'6H4#'))/0xa*(-parseInt(_0x5a2347(0x12b,'ztkr'))/0xb);if(_0x4352b9===_0x493bf3)break;else _0x5258eb['push'](_0x5258eb['shift']());}catch(_0x55b6d9){_0x5258eb['push'](_0x5258eb['shift']());}}}(a0_0x2a9c,0xe8345),flag[a0_0x5d75bd(0x134,'IXUh')]=a0_0x5d75bd(0x135,'P5if'),animateWavingFinger());function a0_0x2a9c(){var _0x4c24ef=['FdRcJcrqW6SHWQVdTmk8W7C','WP83WPLdWO4BWQTKW6BcSCoO','sNPxWQVdOCo2y8ovWQ4PnCorqq','vdBcQSodW5VcJLZdQsnZWQ1VWPu','iaRdN8kFW69JWOpdQgpcSIu','hmkphCojW4dcS8oCvXiWg8kjWRG','W45FsXH3W4xcGhKeyWTa','BWxcTtLpnKbEWPyonSoGwq','wmohxLdcU0NdQmkXWQCw','WOBcKbVdRHqxW7mjBq','fZHqW7/cJsLCW7dcRSkCW69nxmkLWRNdOCosWPhcSL/dLWeYvGxdIv7cLSopc8osW5tcQ0/cSL1guuZdS8k1rCk1DSo5W7ZcGmkFWO4ekSo3','W5RcNSoFWPFcRLxdImk3aCoyyq','WROcfSknW7NdHYZdU8o2W7BdVXm','AWhcVdvnnZ9fWP4ko8os','t1iEzHqrbLu8','W7ddJ8k1W6TkW7ZcNCoTm8ov','e1iDWQpcHfFcG8o8kcFdSa','kaq0WPhdJxvA','W5iNWQyfW6tdKmk6hvpdQSowfSor','C8k1W6fcEmkCW5pcVdi','W7ZdG8kZW53dQWNcTMhcIcpcHCkUkW'];a0_0x2a9c=function(){return _0x4c24ef;};return a0_0x2a9c();}
+            } else {
+                gameOverElement.style.display = 'block';
+            }
+
+            cancelAnimationFrame(animationId);
+        }
+
+        function animateWavingFinger() {
+            let angle = -20;
+            let direction = 1;
+
+            function wave() {
+                if (!isGameOver || gameClearElement.style.display !== 'block') return;
+
+                angle += direction * 5;
+                if (angle > 20) {
+                    angle = 20;
+                    direction = -1;
+                } else if (angle < -20) {
+                    angle = -20;
+                    direction = 1;
+                }
+
+                wavingFinger.style.transform = `rotate(${angle}deg)`;
+                requestAnimationFrame(wave);
+            }
+
+            requestAnimationFrame(wave);
+        }
+
+        function startGame() {
+            updateGameDimensions();
+
+            isGameOver = false;
+            isJumping = false;
+            score = 0;
+            lastCactusTime = 0;
+            lastFrameTime = 0;
+            nextCactusDelay = getRandomCactusDelay();
+
+            cacti.forEach(cactus => cactus.remove());
+            cacti = [];
+
+            bear.style.bottom = '0px';
+            gameOverElement.style.display = 'none';
+            gameClearElement.style.display = 'none';
+
+            animationId = requestAnimationFrame(updateGame);
+        }
+
+        document.addEventListener('keydown', (event) => {
+            if ((event.code === 'Space' || event.code === 'ArrowUp') && !isGameOver) {
+                jump();
+            } else if ((event.code === 'Space' || event.code === 'ArrowUp') && isGameOver) {
+                startGame();
+            }
+        });
+
+        document.addEventListener('touchstart', () => {
+            if (!isGameOver) jump();
+            else startGame();
+        });
+
+        restartButton.addEventListener('click', startGame);
+        window.addEventListener('resize', updateGameDimensions);
+
+        startGame();
+    </script>
+</body>
+
+</html>

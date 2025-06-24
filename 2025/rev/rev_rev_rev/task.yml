@@ -1,0 +1,14 @@
+name: "rev rev rev"
+description: >
+  <p>Reverse it.</p>
+flag: "IERAE{9a058884-2e29-61ab-3272-3eb4a9175a94}"
+flagFormat: "IERAE{[\\x20-\\x7e]+}"
+authors:
+  - rama
+tags:
+  - warmup
+  - rev
+canonical_name: rev-rev-rev
+distfiles: ./distfiles
+score: 500
+order: 10

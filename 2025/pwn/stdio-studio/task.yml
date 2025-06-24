@@ -1,0 +1,19 @@
+name: "Stdio Studio"
+description: >
+  <p>Get familiar with stdio first to tackle with pwn challenges!</p>
+  <p><strong>NOTE: It may take a while until xinetd fully launches (~ 3mins) if you use WSL. Keep this in mind when testing locally!</strong></p>
+  <code style="background-color: rgb(229 231 235); border-radius: 4px; padding: .1em .3em .2em .3em; font-size: 0.85em; white-space: break-spaces;">nc {stdio-studio.host} {stdio-studio.port}</code>
+flag: "IERAE{I/O_15_4n_3s53nt1a1_p1ec3_0f_pwn_f2e8ad23}"
+flagFormat: "IERAE{[\\x20-\\x7e]+}"
+authors:
+  - hugeh0ge
+tags:
+  - pwn
+  - easy
+  - was-warmup
+canonical_name: stdio-studio
+distfiles: ./distfiles
+score: 500
+order: 20
+remote:
+  compose: ./challenge/docker-compose.yml

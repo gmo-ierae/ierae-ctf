@@ -1,0 +1,15 @@
+name: "AVX-512"
+description: >
+  <p>Linus Torvalds - "I hope AVX512 dies a painful death"</p>
+  <small>Note: If you reveive SIGILL (illegal hardware instruction), please try using a newer processor. The author validated the challenge on an m7i.large EC2 instance.</small>
+flag: "IERAE{AQ4A8f-CYIJ1gneQ_IxekeOQlA}"
+flagFormat: "IERAE{[\\x20-\\x7e]+}"
+authors:
+  - SuperFashi
+tags:
+  - hard
+  - rev
+canonical_name: avx512
+distfiles: ./distfiles
+score: 500
+order: 40

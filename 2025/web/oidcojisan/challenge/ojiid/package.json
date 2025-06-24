@@ -1,0 +1,44 @@
+{
+  "name": "ojiid",
+  "version": "1.0.0",
+  "description": "Custom OIDC Provider implementation",
+  "main": "dist/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "dev": "tsx app/server.ts",
+    "typecheck": "tsc",
+    "lint": "biome check --write ./app",
+    "format": "biome format --write ./app"
+  },
+  "keywords": [
+    "oidc",
+    "oauth",
+    "openid",
+    "identity"
+  ],
+  "author": "",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "body-parser": "^2.2.0",
+    "crypto": "^1.0.1",
+    "dotenv": "^16.5.0",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "express-session": "^1.18.1",
+    "jose": "^6.0.11",
+    "jsonwebtoken": "^9.0.2"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.9.4",
+    "@types/body-parser": "^1.19.6",
+    "@types/express": "^5.0.3",
+    "@types/express-session": "^1.18.2",
+    "@types/jsonwebtoken": "^9.0.9",
+    "@types/node": "^22.15.30",
+    "tsx": "^4.19.4",
+    "typescript": "^5.8.3"
+  }
+}

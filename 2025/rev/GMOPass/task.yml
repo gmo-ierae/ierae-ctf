@@ -1,0 +1,18 @@
+name: "GMO Pass"
+description: >
+  <p>Our intern spent company time on this pass plugin for Clang. I tried but it doesn't seem to do anything.</p>
+  <p>Submit at <code>{gmo-pass.host}:{gmo-pass.port}</code></p>
+flag: "IERAE{s73Be-eGwWWDTQZ_DB4YgHgA}"
+flagFormat: "IERAE{[\\x20-\\x7e]+}"
+authors:
+  - SuperFashi
+tags:
+  - extreme
+  - rev
+  - misc
+canonical_name: gmo-pass
+distfiles: ./distfiles
+score: 500
+order: 50
+remote:
+  compose: ./challenge/docker-compose.yml

@@ -1,0 +1,17 @@
+name: "The World"
+description: >
+  <p>THE WORLD! STOP TIME!</p>
+  <code style="background-color: rgb(229 231 235); border-radius: 4px; padding: .1em .3em .2em .3em; font-size: 0.85em; white-space: break-spaces;">nc 34.85.42.235 33337</code>
+flag: "IERAE{Y0u_4r3_St4r_P1a71num_G0od_j0b_ccb78af53f74}"
+flagFormat: "IERAE{[\\x20-\\x7e]+}"
+authors:
+  - hugeh0ge
+tags:
+  - pwn
+  - extreme
+canonical_name: the-world
+distfiles: ./distfiles
+score: 500
+order: 50
+remote:
+  compose: ./challenge/docker-compose.yml

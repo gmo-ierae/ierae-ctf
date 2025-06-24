@@ -1,0 +1,36 @@
+services:
+  ojimemo:
+    hostname: ojimemo.127-0-0-1.nip.io
+    build:
+      context: ./ojimemo
+      dockerfile: Dockerfile
+    ports:
+      - "36000:36000"
+    environment:
+      - NODE_ENV=production
+      - OIDC_HOST=http://34.146.28.203:36001
+      - OIDC_CLIENT=ojimemo
+      - APP_HOST=http://34.146.28.203:36000
+      - PORT=36000
+
+  ojiid:
+    hostname: ojiid.127-0-0-1.nip.io
+    build:
+      context: ./ojiid
+      dockerfile: Dockerfile
+    ports:
+      - "36001:36001"
+    environment:
+      - PORT=36001
+      - ISSUER=http://34.146.28.203:36001
+      - CLIENT_HOST=http://34.146.28.203:36000
+
+  bot:
+    build: ./bot
+    restart: unless-stopped
+    init: true
+    ports:
+      - ${PORT_BOT:-36002}:1337
+    environment:
+      - FLAG=IERAE{local_ojisan_no_tooboe}
+      - APP_URL=http://34.146.28.203:36000

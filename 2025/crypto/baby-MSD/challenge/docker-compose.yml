@@ -1,0 +1,10 @@
+services:
+  baby-msd:
+    build:
+      context: .
+    ulimits:
+      core: 0
+    ports:
+      - "12343:12343"
+    restart: unless-stopped
+    privileged: true

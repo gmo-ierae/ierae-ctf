@@ -1,0 +1,42 @@
+diff --git a/accel/tcg/icount-common.c b/accel/tcg/icount-common.c
+index ec57192be8..db7f728e52 100644
+--- a/accel/tcg/icount-common.c
++++ b/accel/tcg/icount-common.c
+@@ -298,6 +298,10 @@ void icount_start_warp_timer(void)
+ 
+     assert(icount_enabled());
+ 
++    if (!icount_warp_ok()) {
++        return;
++    }
++
+     /*
+      * Nothing to do if the VM is stopped: QEMU_CLOCK_VIRTUAL timers
+      * do not fire, so computing the deadline does not make sense.
+diff --git a/include/sysemu/sysemu.h b/include/sysemu/sysemu.h
+index 73a37949c2..da4b01b42c 100644
+--- a/include/sysemu/sysemu.h
++++ b/include/sysemu/sysemu.h
+@@ -103,6 +103,8 @@ void qemu_init(int argc, char **argv);
+ int qemu_main_loop(void);
+ void qemu_cleanup(int);
+ 
++bool icount_warp_ok(void);
++
+ extern QemuOptsList qemu_legacy_drive_opts;
+ extern QemuOptsList qemu_common_drive_opts;
+ extern QemuOptsList qemu_drive_opts;
+diff --git a/system/runstate.c b/system/runstate.c
+index ea9d6c2a32..299a92f5c0 100644
+--- a/system/runstate.c
++++ b/system/runstate.c
+@@ -879,3 +879,9 @@ void qemu_cleanup(int status)
+     user_creatable_cleanup();
+     /* TODO: unref root container, check all devices are ok */
+ }
++
++// https://gitlab.com/qemu-project/qemu/-/issues/2830
++bool icount_warp_ok(void)
++{
++    return !debug_requested && !(vmstop_requested < RUN_STATE__MAX);
++}

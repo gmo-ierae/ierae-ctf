@@ -1,0 +1,10 @@
+services:
+  stdio-studio:
+    build:
+      context: .
+    ulimits:
+      core: 0
+    ports:
+      - "33335:33335"
+    restart: unless-stopped
+    init: true

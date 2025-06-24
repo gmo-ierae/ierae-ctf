@@ -1,0 +1,9 @@
+log/
+distfiles/chal1/
+distfiles/chal2/
+!distfiles/chal1/kernel.bin
+!distfiles/chal1/kernel.elf
+!distfiles/chal1/kernel.asm
+!distfiles/chal2/kernel.bin
+!distfiles/chal2/kernel.elf
+!distfiles/chal2/kernel.asm

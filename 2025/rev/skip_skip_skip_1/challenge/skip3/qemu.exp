@@ -1,0 +1,39 @@
+#!/usr/bin/expect -f
+
+set fp [open "$env(LOG_DIR)/target_input.txt" r]
+set input_content [read $fp]
+close $fp
+
+spawn sh -c "qemu-system-arm \
+    -M versatilepb \
+    -m 128M \
+    -nographic \
+    -kernel $env(CHALLENGE_FILE) \
+    -icount shift=10 \
+    -monitor none \
+    -S -s -chardev socket,path=$env(GDB_SOCKET),server=on,wait=off,id=gdb0 -gdb chardev:gdb0 2> $env(LOG_DIR)/qemu_error.log"
+
+log_file -noappend $env(LOG_DIR)/target_output.txt
+
+expect {
+    "Thank you for using our service\!\r\n" {
+        exit 0
+    }
+    "Input:" {
+        send -- "$input_content"
+    }
+    timeout {
+        exec kill -9 [exp_pid]
+        exit 0
+    }
+}
+
+expect {
+    "Thank you for using our service\!\r\n" {
+        exit 0
+    }
+    timeout {
+        exec kill -9 [exp_pid]
+        exit 0
+    }
+}

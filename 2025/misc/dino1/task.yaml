@@ -1,0 +1,19 @@
+name: "DiNo.1"
+description: > # available placeholders: {{service_name}.host}, {{service_name}.port}, {service_name} is the same as service name in compose.yml
+  <p>No Internet</p>
+  <p>インターネットに接続されていません</p>
+  <ul class="ml-6 list-disc">
+    <li>Challenge: <a class="underline text-sky-500" href="http://{web.host}:{web.port}">http://{web.host}:{web.port}</a></li>
+  </ul>
+flag: "IERAE{In_f4ct,th3_4uth0r's_h1gh_sc0r3_1s_4b0ut_5000}" # real flag
+flagFormat: "IERAE{[\\x20-\\x7e]+}" # this is used for flag submission validation. this value is public to users
+authors:
+  - IERAE
+tags:
+  - misc
+  - warmup
+canonical_name: dino1 # generic challenge identifier. this is used for setup infra triggers. format: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#rfc-1035-label-names
+score: 500
+order: 1 # this is used for the ordering on the challenge list page. (sanity_check: 0, OMG: 1, others: 50, homework: 100)
+remote: # remove if you don't need remote servers
+  compose: ./challenge/compose.yaml

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>🧩Slide Sandbox🧩</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+</head>
+
+<body>
+  <main class="container">
+    <h1 class="text-center">🧩Slide Sandbox🧩</h1>
+
+    <ul id="list"></ul>
+    <hr>
+
+    <form id="puzzleForm" method="post" action="/create">
+      <small>Title</small>
+      <input type="text" id="new-title" name="title" value="My puzzle">
+      <small>Template <sub>{{v}} is replaced by one of the ANSWERS characters</sub></small>
+      <textarea id="new-template" name="template" rows="5"><h1>{{v}}</h1></textarea>
+      <small>Answers <sub>8-chars</sub></small>
+      <input type="text" id="new-answers" name="answers" value="12345678">
+      <button type="submit" id="new-button">Submit</button>
+    </form>
+  </main>
+</body>
+
+<script>
+  fetch('/puzzles')
+    .then(r => r.json())
+    .then(puzzles => {
+      puzzles.forEach(puzzle => {
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        a.href = '/puzzle?id=' + puzzle.id;
+        a.textContent = puzzle.title;
+        li.appendChild(a);
+        list.appendChild(li);
+      });
+    });
+</script>
+
+</html>

@@ -1,0 +1,7 @@
+services:
+  solve:
+    build:
+      context: container
+    entrypoint:
+      - python3
+      - solve.py

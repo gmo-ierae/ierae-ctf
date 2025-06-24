@@ -1,0 +1,14 @@
+name: "rot rot rot"
+description: >
+  <p>Rotate it.</p>
+flag: "IERAE{Rot!Rot!Rot!_91961c2b05ff7eb8b940011210731f298509d87a4c2f33b294322688d931a852}"
+flagFormat: "IERAE{[\\x20-\\x7e]+}"
+authors:
+  - n4nu
+tags:
+  - rev
+  - easy
+canonical_name: rot-rot-rot
+distfiles: ./distfiles
+score: 500
+order: 20

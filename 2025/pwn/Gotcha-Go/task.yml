@@ -1,0 +1,17 @@
+name: "Gotcha-Go"
+description: >
+  <p>Isn't Go a safe language?</p>
+  <code style="background-color: rgb(229 231 235); border-radius: 4px; padding: .1em .3em .2em .3em; font-size: 0.85em; white-space: break-spaces;">nc {gotcha-go.host} {gotcha-go.port}</code>
+flag: "IERAE{Go_is_an_open_source_programming_language_15a730a8}"
+flagFormat: "IERAE{[\\x20-\\x7e]+}"
+authors:
+  - tsuneki
+tags:
+  - pwn
+  - medium
+canonical_name: gotcha-go
+distfiles: ./distfiles
+score: 500
+order: 30
+remote:
+  compose: ./challenge/docker-compose.yml

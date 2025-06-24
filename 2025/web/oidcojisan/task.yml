@@ -1,0 +1,21 @@
+name: "OIDC転生おじさん"
+description: >
+  <p>I was hit by a truck and woke up reborn as an OIDC.</p>
+  <ul class="ml-6 list-disc">
+    <li>Ojimemo: <a class="underline text-sky-500" href="http://34.146.28.203:36000/">http://34.146.28.203:36000/</a></li>
+    <li>OjiID: <a class="underline text-sky-500" href="http://34.146.28.203:36001/">http://34.146.28.203:36001/</a></li>
+    <li>Admin bot: <a class="underline text-sky-500" href="http://34.146.28.203:36002/">http://34.146.28.203:36002/</a></li>
+  </ul>
+flag: "IERAE{local_ojisan_no_tooboe}"
+flagFormat: "IERAE{[\\x20-\\x7e]+}" # this is used for flag submission validation. this value is public to users
+authors:
+  - tyage
+tags:
+  - web
+  - medium
+canonical_name: oidcojisan
+distfiles: ./distfiles # if required
+score: 500
+order: 30
+remote:
+  compose: ./challenge/compose.yml

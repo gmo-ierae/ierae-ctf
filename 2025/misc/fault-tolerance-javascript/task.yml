@@ -1,0 +1,17 @@
+name: "Fault Tolerance"
+description: >
+  <p>I have heard that in some industries it is required to write programs that will work even if some data is corrupted! Let's try that this time!</p>
+  <code style="background-color: rgb(229 231 235); border-radius: 4px; padding: .1em .3em .2em .3em; font-size: 0.85em; white-space: break-spaces;">nc {fault-tolerance-javascript.host} {fault-tolerance-javascript.port}</code>
+flag: "IERAE{h3y_br0_n0t_th47_c0rrupt10n_10l_cfd1542e}"
+flagFormat: "IERAE{[\\x20-\\x7e]+}"
+authors:
+  - hugeh0ge
+tags:
+  - misc
+  - extreme
+canonical_name: fault-tolerance-javascript
+distfiles: ./distfiles
+score: 500
+order: 50
+remote:
+  compose: ./challenge/docker-compose.yml

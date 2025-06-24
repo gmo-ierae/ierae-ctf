@@ -1,0 +1,5 @@
+services:
+  trunc-challenge:
+    build:
+      context: .
+    restart: "no"

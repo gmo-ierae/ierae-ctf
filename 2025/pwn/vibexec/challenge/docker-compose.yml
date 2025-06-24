@@ -1,0 +1,9 @@
+services:
+  vibexec:
+    build:
+      context: .
+    ulimits:
+      core: 0
+    ports:
+      - "31662:31662"
+    restart: always

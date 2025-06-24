@@ -1,0 +1,21 @@
+services:
+  skip3-chal1:
+    build:
+      context: skip3
+      args:
+        FLAG: "IERAE{514ac1684b9c7a95cf26e0bf9}"
+    entrypoint:
+      - ./service.sh
+    environment:
+      POW_DIFFICULTY: "6"
+      TIMEOUT:        "10"
+      HINT_IP:        "0"
+      LOG_BASE:       "/log"
+      CHALLENGE_FILE: "/chal1/kernel.bin"
+      PORT:           "63693"
+    ports:
+      - 63693:63693
+    deploy:
+      resources:
+        reservations:
+          cpus: '2'

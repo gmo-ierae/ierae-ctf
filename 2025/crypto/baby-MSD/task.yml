@@ -1,0 +1,17 @@
+name: "Baby MSD"
+description: >
+  <p>👶 &lt; Guess the most significant digit!</p>
+  <code style="background-color: rgb(229 231 235); border-radius: 4px; padding: .1em .3em .2em .3em; font-size: 0.85em; white-space: break-spaces;">nc {baby-msd.host} {baby-msd.port}</code>
+flag: "IERAE{bab00_gu0ooo_g00_47879e28a162}"
+flagFormat: "IERAE{[\\x20-\\x7e]+}"
+authors:
+  - hugeh0ge
+tags:
+  - crypto
+  - warmup
+canonical_name: baby-msd
+distfiles: ./distfiles
+score: 500
+order: 10
+remote:
+  compose: ./challenge/docker-compose.yml

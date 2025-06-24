@@ -1,0 +1,18 @@
+name: "MSD"
+description: >
+  <p>Guess the most significant digit!</p>
+  <code style="background-color: rgb(229 231 235); border-radius: 4px; padding: .1em .3em .2em .3em; font-size: 0.85em; white-space: break-spaces;">nc {msd.host} {msd.port}</code>
+flag: "IERAE{1sd_My5t1c41_p0w3r_050ad254}"
+flagFormat: "IERAE{[\\x20-\\x7e]+}"
+authors:
+  - hugeh0ge
+tags:
+  - crypto
+  - easy
+  - was-warmup
+canonical_name: msd
+distfiles: ./distfiles
+score: 500
+order: 20
+remote:
+  compose: ./challenge/docker-compose.yml

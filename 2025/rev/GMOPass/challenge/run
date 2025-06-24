@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+set -eu
+
+[ ! -f "/tmp/submit.ll" ] || exit 1
+
+echo -n 'number of bytes: '
+read num_bytes
+
+if [[ ! "${num_bytes}" =~ ^[0-9]+$ ]]; then
+    exit 1
+fi
+
+if [ "${num_bytes}" -ge 4096 ]; then
+    exit 1
+fi
+
+dd bs=1 count="${num_bytes}" of=/tmp/submit.ll 2>/dev/null
+exec clang -fpass-plugin=/app/GMOPass.so -emit-llvm --output=/dev/null --optimize=3 --assemble --language=ir /tmp/submit.ll 2>/dev/null

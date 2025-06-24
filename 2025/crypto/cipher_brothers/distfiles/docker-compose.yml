@@ -1,0 +1,13 @@
+services:
+  cipher-brothers:
+    build:
+      context: .
+    ports:
+      - "12349:12349"
+    restart: unless-stopped
+    privileged: true
+    deploy:
+      resources:
+        reservations:
+          cpus: "0.5"
+          memory: 200M

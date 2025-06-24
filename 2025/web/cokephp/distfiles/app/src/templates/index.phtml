@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CokePHP: Rapid Development Framework</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            line-height: 1.42857;
+            color: #333;
+            background-color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .header {
+            background-color: #d33c44;
+            color: white;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header h1 {
+            font-weight: 700;
+            font-size: 24px;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .content {
+            text-align: center;
+            margin-top: 60px;
+        }
+        
+        .welcome-banner {
+            background-color: #f1f1f1;
+            padding: 30px;
+            border-radius: 5px;
+            margin-bottom: 40px;
+        }
+        
+        .welcome-banner h1 {
+            font-weight: 900;
+            font-size: 36px;
+            color: #d33c44;
+            margin-bottom: 20px;
+        }
+        
+        .welcome-banner p {
+            font-size: 18px;
+            color: #404041;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+        
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-top: 40px;
+        }
+        
+        .feature {
+            width: calc(33.33% - 20px);
+            background-color: #fff;
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .feature:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature h3 {
+            color: #d33c44;
+            margin-bottom: 15px;
+        }
+        
+        .feature p {
+            color: #404041;
+            line-height: 1.5;
+        }
+        
+        .cola-svg-container {
+            width: 180px;
+            height: 200px;
+            margin: 40px auto;
+        }
+        
+        .footer {
+            background-color: #f5f5f5;
+            padding: 20px;
+            text-align: center;
+            margin-top: 60px;
+            color: #777;
+        }
+        
+        @media (max-width: 768px) {
+            .feature {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>CokePHP</h1>
+    </div>
+    
+    <div class="container">
+        <div class="content">
+            <div class="welcome-banner">
+                <h1>It works!</h1>
+                <p>CokePHP v4.5.0 has been successfully installed</p>
+            </div>
+            
+            <div class="cola-svg-container">
+                <svg viewBox="0 0 200 250" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M40,50 L50,220 C50,230 150,230 150,220 L160,50" fill="rgba(220,220,220,0.5)" />
+                    <ellipse cx="100" cy="50" rx="60" ry="15" fill="rgba(220,220,220,0.5)" />
+                    <ellipse cx="100" cy="220" rx="50" ry="10" fill="rgba(220,220,220,0.5)" />
+                    
+                    <path d="M50,60 L58,210 C58,218 142,218 142,210 L150,60" fill="#3b1c0f" />
+                    <ellipse cx="100" cy="60" rx="50" ry="10" fill="#3b1c0f" />
+                    <ellipse cx="100" cy="210" rx="42" ry="8" fill="#3b1c0f" />
+                    
+                    <ellipse cx="70" cy="70" rx="10" ry="6" fill="#d8ae98" />
+                    <ellipse cx="90" cy="65" rx="8" ry="5" fill="#d8ae98" />
+                    <ellipse cx="110" cy="68" rx="12" ry="7" fill="#d8ae98" />
+                    <ellipse cx="130" cy="72" rx="9" ry="5" fill="#d8ae98" />
+                    
+                    <path d="M60,80 C70,85 75,90 70,100" stroke="white" stroke-width="2" fill="none" />
+                </svg>
+            </div>
+            
+            <h2>Let's Get Started</h2>
+            <p>Master this framework and build amazing applications!</p>
+            
+            <div class="features">
+                <div class="feature">
+                    <h3>Rapid Development</h3>
+                    <p>Build applications with less code. Follow conventions and eliminate the need for complex configurations.</p>
+                </div>
+                <div class="feature">
+                    <h3>Modern Tools</h3>
+                    <p>Use modern PHP features and leverage contemporary tools for dependency management and code generation.</p>
+                </div>
+                <div class="feature">
+                    <h3>Security</h3>
+                    <p>Protect your applications with built-in security tools provided by the framework.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

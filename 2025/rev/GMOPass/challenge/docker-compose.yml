@@ -1,0 +1,6 @@
+services:
+  gmo-pass:
+    build: .
+    ports:
+      - "12450:12450"
+    privileged: true

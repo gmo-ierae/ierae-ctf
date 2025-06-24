@@ -1,0 +1,17 @@
+name: "Cipher Brothers"
+description: >
+  <p>It's The Intouchables. Look for the Hidden Invertory.</p>
+  <code style="background-color: rgb(229 231 235); border-radius: 4px; padding: .1em .3em .2em .3em; font-size: 0.85em; white-space: break-spaces;">nc {cipher-brothers.host} {cipher-brothers.port}</code>
+flag: "IERAE{4ng0u_t0tt3m0_t4n0sh11_n3!!}"
+flagFormat: "IERAE{[\\x20-\\x7e]+}"
+authors:
+  - mitsu
+tags:
+  - crypto
+  - medium
+canonical_name: cipher-brothers
+distfiles: ./distfiles
+score: 500
+order: 30
+remote:
+  compose: ./challenge/docker-compose.yml

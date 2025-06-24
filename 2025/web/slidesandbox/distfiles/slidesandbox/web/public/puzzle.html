@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>🧩Slide Sandbox🧩</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f0f0f0;
+      font-family: Arial, sans-serif;
+    }
+
+    .puzzle-container {
+      display: grid;
+      grid-template-columns: repeat(3, 100px);
+      grid-template-rows: repeat(3, 100px);
+      gap: 5px;
+      border: 2px solid #333;
+      padding: 10px;
+      background-color: #333;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    }
+
+    iframe {
+      width: 100px;
+      height: 100px;
+      border: none;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      background-color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .message {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+      height: 20px;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <h1 class="title" id="title"></h1><br>
+  <div class="game-area">
+    <div class="puzzle-container" id="puzzle">
+      <iframe id="frame0" sandbox="allow-same-origin"></iframe>
+      <iframe id="frame1" sandbox="allow-same-origin"></iframe>
+      <iframe id="frame2" sandbox="allow-same-origin"></iframe>
+      <iframe id="frame3" sandbox="allow-same-origin"></iframe>
+      <iframe id="frame4" sandbox="allow-same-origin"></iframe>
+      <iframe id="frame5" sandbox="allow-same-origin"></iframe>
+      <iframe id="frame6" sandbox="allow-same-origin"></iframe>
+      <iframe id="frame7" sandbox="allow-same-origin"></iframe>
+      <iframe id="frame8" sandbox="allow-same-origin"></iframe>
+    </div>
+    <div class="message">
+      <a href="/">TOP</a>
+    </div>
+  </div>
+</body>
+
+<script>
+  let pieces = Array();
+  fetch('/puzzles/' + (new URLSearchParams(location.search)).get('id'))
+    .then(r => r.json())
+    .then(puzzle => {
+      document.getElementById('title').innerText = puzzle.title;
+
+      const ans = puzzle.answers.split('').sort(() => Math.random() - 0.5); // Sometimes the puzzles are impossible. Forgive please.      
+      ans.forEach((v, i) => {
+        pieces.push(document.createElement("div"));
+      })
+      pieces.push(document.createElement("div"))
+
+      for (var i = 0; i < frames.length; i++) {
+        frames[i].addEventListener("click", slide);
+        frames[i].document.body.appendChild(pieces[i]);
+      }
+
+      ans.forEach((v, i) => {
+        pieces[i].innerHTML = puzzle.template.replaceAll("{{v}}", v);
+      })
+    });
+
+  function slide(e) {
+    const idx = Number(e.currentTarget.frameElement.id.at(5));
+
+    if (idx % 3 !== 0 && pieces[idx - 1].firstChild === null) {
+      // ←
+      [pieces[idx], pieces[idx - 1]] = [pieces[idx - 1], pieces[idx]];
+    } else if (idx % 3 !== 2 && pieces[idx + 1].firstChild === null) {
+      // →
+      [pieces[idx], pieces[idx + 1]] = [pieces[idx + 1], pieces[idx]];
+    } else if (idx > 2 && pieces[idx - 3].firstChild === null) {
+      // ↑
+      [pieces[idx], pieces[idx - 3]] = [pieces[idx - 3], pieces[idx]];
+    } else if (idx < 6 && pieces[idx + 3].firstChild === null) {
+      // ↓
+      [pieces[idx], pieces[idx + 3]] = [pieces[idx + 3], pieces[idx]];
+    }
+
+    pieces.forEach((v, i) => {
+      frames[i].document.body.replaceChildren(v)
+    })
+  };
+</script>
+
+</html>

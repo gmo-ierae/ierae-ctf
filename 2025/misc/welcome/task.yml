@@ -1,0 +1,13 @@
+name: "Welcome"
+description: >
+  <p>Welcome to IERAE CTF 2025!</p>
+  <p>The flag is on <a class="underline text-sky-500" href="https://discord.gg/MGZbu88UzU">Discord</a></p>
+flag: "IERAE{An_incredibly_interesting_flag2}"
+flagFormat: "IERAE{[\\x20-\\x7e]+}"
+authors:
+  - IERAE
+tags:
+  - "sanity check"
+canonical_name: welcome
+score: 500
+order: 0

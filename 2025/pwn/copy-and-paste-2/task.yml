@@ -1,0 +1,19 @@
+name: "Copy & Paste 2"
+description: >
+  <p>Show me your growth over the past year!</p>
+  <p><strong>NOTE: this is a revision of last year's “Copy & Paste” problem. For the solution of last year's problem, please refer to</strong></p><ul class="ml-6 list-disc"><li><a class="underline text-sky-500" href="https://github.com/gmo-ierae/ierae-ctf-2024/blob/main/pwn/copy_and_paste/solution/solve.py">solve.py</a></li><li><a class="underline text-sky-500" href="https://gmo-cybersecurity.com/blog/ierae-ctf-2024-writeup-pwn/#b">official writeup</a></li></ul>
+  <code style="background-color: rgb(229 231 235); border-radius: 4px; padding: .1em .3em .2em .3em; font-size: 0.85em; white-space: break-spaces;">nc {copy-paste2.host} {copy-paste2.port}</code>
+flag: "IERAE{7h3_5ec0nd_s73p_7o_b3_4_pwn3r_how's_y0ur_pr0gr355_79e2dec4a38e}"
+flagFormat: "IERAE{[\\x20-\\x7e]+}"
+authors:
+  - hugeh0ge
+  - kam1tsur3
+tags:
+  - pwn
+  - medium
+canonical_name: copy-paste2
+distfiles: ./distfiles
+score: 500
+order: 30
+remote:
+  compose: ./challenge/docker-compose.yml

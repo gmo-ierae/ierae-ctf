@@ -1,0 +1,17 @@
+name: "Length Calculator"
+description: >
+  <p>This is my first C code. Why is this language so bothering when handling strings???</p>
+  <code style="background-color: rgb(229 231 235); border-radius: 4px; padding: .1em .3em .2em .3em; font-size: 0.85em; white-space: break-spaces;">nc {length-calculator.host} {length-calculator.port}</code>
+flag: "IERAE{Th3_5h0rt35t_3v3r_07a972c0}"
+flagFormat: "IERAE{[\\x20-\\x7e]+}"
+authors:
+  - hugeh0ge
+tags:
+  - pwn
+  - warmup
+canonical_name: length-calculator
+distfiles: ./distfiles
+score: 500
+order: 10
+remote:
+  compose: ./challenge/docker-compose.yml

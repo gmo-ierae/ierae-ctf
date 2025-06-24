@@ -1,0 +1,20 @@
+name: "Skip Skip Skip 1"
+description: >
+  <p>Shall we skip?</p>
+  <p>FYI: qemu-system-arm -M versatilepb -m 128M -nographic -kernel kernel.bin -monitor none</p>
+  <code style="background-color: rgb(229 231 235); border-radius: 4px; padding: .1em .3em .2em .3em; font-size: 0.85em; white-space: break-spaces;">nc {skip3-chal1.host} {skip3-chal1.port}</code>
+flag: "IERAE{514ac1684b9c7a95cf26e0bf9}"
+flagFormat: "IERAE{[\\x20-\\x7e]+}"
+tags:
+  - rev
+  - hardware
+  - easy
+canonical_name: skip-skip-skip-1
+distfiles: ./distfiles
+remote:
+  compose: ./challenge/docker-compose.yml
+
+authors:
+  - anonymous
+score: 500
+order: 30

@@ -1,0 +1,12 @@
+services:
+  copy-paste2:
+    build:
+      context: .
+    ulimits:
+      core: 0
+    ports:
+      - "33336:33336"
+    restart: unless-stopped
+    init: true
+    privileged: true
+    pid: "host"
